@@ -1,0 +1,23 @@
+services:
+  n8n:
+    image: n8nio/n8n
+    container_name: n8n
+    entrypoint:
+      - tini
+      - --
+      - /docker-entrypoint.sh
+    environment:
+      - NODE_VERSION=24.14.1
+      - NPM_CONFIG_UPDATE_NOTIFIER=false
+      - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      - NODE_PATH=/opt/nodejs/node-v24.14.1/lib/node_modules
+      - NODE_ENV=production
+      - N8N_RELEASE_TYPE=stable
+      - SHELL=/bin/sh
+    restart: unless-stopped
+    ports:
+      - "5678:5678/tcp"
+    volumes:
+      - "n8n_data:/home/node/.n8n:z"
+    networks:
+      - bridge

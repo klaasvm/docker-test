@@ -1,0 +1,41 @@
+{
+  "id": "3783f44414b4846642213a4fc3e566bcd255e4a49ab2a3cbcce1012ed4c77f0b",
+  "short_id": "3783f44414b4",
+  "name": "n8n",
+  "status": "running",
+  "state": "running",
+  "started_at": "2026-05-14T12:48:43.139910502Z",
+  "image": "n8nio/n8n",
+  "command": null,
+  "entrypoint": [
+    "tini",
+    "--",
+    "/docker-entrypoint.sh"
+  ],
+  "restart_policy": "unless-stopped",
+  "networks": [
+    "bridge"
+  ],
+  "ports": [
+    {
+      "container": "5678/tcp",
+      "host": "5678",
+      "host_ip": ""
+    }
+  ],
+  "mounts": [
+    {
+      "Type": "volume",
+      "Name": "n8n_data",
+      "Source": "n8n_data",
+      "Destination": "/home/node/.n8n",
+      "Driver": "local",
+      "Mode": "z",
+      "RW": true,
+      "Propagation": ""
+    }
+  ],
+  "named_volumes": [
+    "n8n_data"
+  ]
+}
