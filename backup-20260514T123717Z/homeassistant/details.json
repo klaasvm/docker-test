@@ -1,0 +1,39 @@
+{
+  "id": "8e633cd75c75389a6877b9d5c97d62ef3dd110b4888ba364ee326d2ac9c66576",
+  "short_id": "8e633cd75c75",
+  "name": "homeassistant",
+  "status": "running",
+  "state": "running",
+  "started_at": "2026-05-14T07:25:17.057931962Z",
+  "image": "ghcr.io/home-assistant/home-assistant:stable",
+  "command": null,
+  "entrypoint": [
+    "/init"
+  ],
+  "restart_policy": "unless-stopped",
+  "networks": [
+    "bridge"
+  ],
+  "ports": [
+    {
+      "container": "8123/tcp",
+      "host": "8123",
+      "host_ip": ""
+    }
+  ],
+  "mounts": [
+    {
+      "Type": "volume",
+      "Name": "homeassistant_config",
+      "Source": "/var/lib/docker/volumes/homeassistant_config/_data",
+      "Destination": "/config",
+      "Driver": "local",
+      "Mode": "z",
+      "RW": true,
+      "Propagation": ""
+    }
+  ],
+  "named_volumes": [
+    "homeassistant_config"
+  ]
+}

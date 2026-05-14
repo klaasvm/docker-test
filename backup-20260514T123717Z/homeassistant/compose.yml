@@ -1,0 +1,24 @@
+services:
+  homeassistant:
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    container_name: homeassistant
+    entrypoint:
+      - /init
+    environment:
+      - "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      - LANG=C.UTF-8
+      - S6_BEHAVIOUR_IF_STAGE2_FAILS=2
+      - S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0
+      - S6_CMD_WAIT_FOR_SERVICES=1
+      - S6_SERVICES_READYTIME=50
+      - "UV_EXTRA_INDEX_URL=https://wheels.home-assistant.io/musllinux-index/"
+      - S6_SERVICES_GRACETIME=240000
+      - UV_SYSTEM_PYTHON=true
+      - UV_NO_CACHE=true
+    restart: unless-stopped
+    ports:
+      - "8123:8123/tcp"
+    volumes:
+      - "/var/lib/docker/volumes/homeassistant_config/_data:/config:z"
+    networks:
+      - bridge
